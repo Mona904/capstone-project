@@ -12,9 +12,9 @@ const List = styled.ul`
   justify-content: center;
 
   li {
-    width: 30rem;
-    min-width: 10rem;
-    height: 30rem;
+    width: 10rem;
+    min-width: 5rem;
+    height: 10rem;
   }
 `;
 function PlantList(props) {

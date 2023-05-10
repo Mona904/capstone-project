@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 
 const StyledImage = styled(Image)`
-width: 100%;
+object-fit: cover;
 `;
 
 const Container = styled.article`
@@ -11,19 +11,26 @@ width: 100%;
 position: relative;
 `;
 
+
 const Title = styled.h2`
 position: absolute;
 bottom: -1px;
 margin: 0;
 background-color: #fff;
 width: 100%;
-padding: 3px;`
+padding: 2px;
+font-size: 1rem;`
+
 function PlantCard(props) {
   const { name, image } = props;
 
   return (
     <Container>
-      <Image src={image} alt={name} />
+      <StyledImage src={image} alt={name} 
+      fill 
+      sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"/>
       <Title>{name}</Title>
     </Container>
   );

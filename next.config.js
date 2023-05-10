@@ -22,8 +22,13 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "www.picturethisai.com",
+      },
+      {
+        protocol: "https",
         hostname: "picturethisai.com",
       },
+
       {
         protocol: "https",
         hostname: "cdn11.bigcommerce.com",
