@@ -1,13 +1,15 @@
 import styled from "styled-components";
+import Image from "next/image";
 
-const Image = styled.img`
+const StyledImage = styled(Image)`
 width: 100%;
-`
+`;
 
 const Container = styled.article`
 height: 100%;
 width: 100%;
-position: relative;`
+position: relative;
+`;
 
 const Title = styled.h2`
 position: absolute;

@@ -16,3 +16,22 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+
+module.exports = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "picturethisai.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn11.bigcommerce.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+      },
+    ],
+  },
+};
