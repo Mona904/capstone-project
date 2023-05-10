@@ -1,7 +1,10 @@
-export default function HomePage() {
+import PlantPage from '@/components/PlantPage';
+
+export default function RegionPlants({plants}) {
   return (
     <div>
-      <h1>Hello from Next.js</h1>
+      <h1>Plants in my region</h1>
+    <PlantPage plants={plants}/>
     </div>
   );
 }
