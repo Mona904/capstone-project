@@ -1,7 +1,5 @@
-
-import PlantCard from './PlantCard';
+import PlantCard from "./PlantCard";
 import styled from "styled-components";
-import useSWR from "swr"; 
 
 const List = styled.ul`
   list-style: none;
@@ -19,9 +17,7 @@ const List = styled.ul`
     height: 10rem;
   }
 `;
-/*function PlantList(props) {
-  const { plants } = props;
-
+function PlantList({ plants, toggleFavorite }) {
   return (
     <List>
       {plants.map((plant) => (
@@ -29,42 +25,12 @@ const List = styled.ul`
           <PlantCard
             name={plant.name}
             image={plant.image}
-            onClick={() => navigateToPlantDetails(plant.id)}
+            id={plant.id}
+            toggleFavorite={toggleFavorite}
           />
         </li>
       ))}
     </List>
   );
 }
-*/
-export const fetcher = async (...args) => {
-  const response = await fetch(...args);
-  if (!response.ok) {
-    throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-  }
-  return await response.json();
-};
-
-function PlantList (){
-  const {data: plants, error, isLoading} = useSWR("/api/Plants", fetcher);
-  if (error){
-    return (<p>Error!</p>)
-  }
-  if (isLoading)
-   {return <p>Loading...</p>
-}
-return (<List>
-  {plants.map((plant, index) => (
-    <li key={index}>
-      <PlantCard
-        name={plant.title}
-        // image={plant.image}
-        onClick={() => navigateToPlantDetails(plant.id)}
-      />
-    </li>
-  ))}
-</List>)
-}
-
 export default PlantList;
-

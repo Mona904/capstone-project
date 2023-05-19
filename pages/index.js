@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
-import PlantPage from "@/components/PlantPage";
+import PlantList from "@/components/PlantList";
 
 const Header = styled.header`
   display: flex;
@@ -66,7 +66,7 @@ const locations = [
   { id: 3, name: "Cologne" },
 ];
 
-export default function RegionPlants({ plants }) {
+export default function HomePage({ plants, toggleFavorite }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(locations[0]);
 
@@ -104,7 +104,7 @@ export default function RegionPlants({ plants }) {
       <Link href="/favorites">
         <ViewFavoritesButton>View Favorites</ViewFavoritesButton>
       </Link>
-      <PlantPage plants={plants} />
+      <PlantList plants={plants} toggleFavorite={toggleFavorite} />
     </div>
   );
 }
