@@ -1,5 +1,4 @@
-
-import PlantCard from './PlantCard';
+import PlantCard from "./PlantCard";
 import styled from "styled-components";
 
 const List = styled.ul`
@@ -10,6 +9,7 @@ const List = styled.ul`
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  background-color: #e5f7eb;
 
   li {
     width: 10rem;
@@ -17,18 +17,21 @@ const List = styled.ul`
     height: 10rem;
   }
 `;
-function PlantList(props) {
-  const { plants } = props;
-
+function PlantList({ plants, toggleFavorite }) {
   return (
     <List>
-
-      {plants.map(plant => (
-        <li key={plant.id}><PlantCard  name={plant.name} image={plant.image} /> </li>
+      {plants.map((plant) => (
+        <li key={plant.id}>
+          <PlantCard
+            name={plant.name}
+            image={plant.image}
+            id={plant.id}
+            toggleFavorite={toggleFavorite}
+            isFavorite={plant.isFavorite}
+          />
+        </li>
       ))}
     </List>
   );
 }
-
 export default PlantList;
-
