@@ -27,6 +27,7 @@ function PlantList({ plants, toggleFavorite }) {
             image={plant.image}
             id={plant.id}
             toggleFavorite={toggleFavorite}
+            isFavorite={plant.isFavorite}
           />
         </li>
       ))}

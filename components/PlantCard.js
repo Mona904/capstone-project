@@ -23,9 +23,30 @@ const Title = styled.h2`
 `;
 const Button = styled.button`
   position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+
+  svg {
+    font-size: 1.2rem;
+    fill: ${({ isFavorite }) => (isFavorite ? "red" : "inherit")};
+  }
+
+  &:hover {
+    svg {
+      color: red;
+    }
+  }
 `;
 
-function PlantCard({ name, image, id, toggleFavorite }) {
+function PlantCard({ name, image, id, isFavorite, toggleFavorite }) {
+  const handleClick = () => {
+    toggleFavorite(id);
+  };
+
   return (
     <Container>
       <StyledImage
@@ -37,7 +58,7 @@ function PlantCard({ name, image, id, toggleFavorite }) {
               33vw"
       />
 
-      <Button type="button" onClick={() => toggleFavorite(id)}>
+      <Button type="button" onClick={handleClick} isFavorite={isFavorite}>
         <Heart />
       </Button>
 
