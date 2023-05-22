@@ -1,6 +1,7 @@
 import PlantList from "@/components/PlantList";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import BackLink from "next/link";
 
 const BackButton = styled.button`
   margin-top: 1rem;
@@ -30,7 +31,7 @@ export default function Favorites({ plants, toggleFavorite }) {
         <Message>No plants added to favorites.</Message>
       )}
 
-      <BackButton onClick={() => router.back()}>Back to Gallery</BackButton>
+      <BackLink href="/">Back to Gallery</BackLink>
     </>
   );
 }
