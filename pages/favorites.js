@@ -1,10 +1,17 @@
+import React from "react";
 import PlantList from "@/components/PlantList";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import BackLink from "next/link";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
 
 const BackButton = styled.button`
-  margin-top: 1rem;
   background-color: #173e14;
   color: #fff;
   padding: 0.5rem 1rem;
@@ -21,17 +28,21 @@ export default function Favorites({ plants, toggleFavorite }) {
   const favorites = plants.filter((plant) => plant.isFavorite);
   const router = useRouter();
 
+  const handleBack = () => {
+    router.push("/");
+  };
+
   return (
-    <>
+    <Container>
       <h1 style={{ color: "#fff" }}>Favorites</h1>
 
       {favorites.length > 0 ? (
         <PlantList plants={favorites} toggleFavorite={toggleFavorite} />
       ) : (
-        <Message>No plants added to favorites.</Message>
+        <p>No plants added to favorites</p>
       )}
 
-      <BackLink href="/">Back to Gallery</BackLink>
-    </>
+      <BackButton onClick={handleBack}>Back to Gallery</BackButton>
+    </Container>
   );
 }
