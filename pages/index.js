@@ -1,76 +1,79 @@
+import React from "react";
+import Header from "@/components/Header";
+import PlantList from "@/components/PlantList";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
-import PlantList from "@/components/PlantList";
 
-const Header = styled.header`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1rem;
+const Container = styled.div`
+  margin-top: 70px;
 `;
 
-const LocationContainer = styled.div`
-  display: flex;
-  align-items: center;
+const PageHeader = styled.header`
   position: relative;
-`;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #e5f7eb;
+  color: #000;
+  z-index: 10;
 
-const LocationSymbol = styled.span`
-  font-size: 1.5rem;
-  margin-right: 0.5rem;
-`;
+  div {
+    display: flex;
+    align-items: center;
+  }
 
-const LocationText = styled.span`
-  font-size: 1rem;
-`;
+  span {
+    margin-right: 0.5rem;
+    cursor: pointer;
+  }
 
-const HamburgerMenu = styled.span`
-  font-size: 1.5rem;
-  cursor: pointer;
-`;
+  ul {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #e5f7eb;
+    border-radius: 4px;
+    z-index: 1;
+  }
 
-const DropdownMenu = styled.ul`
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #fff;
-  border-radius: 0.5rem;
-  padding: 0.5rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
-  z-index: 2;
-  list-style: none;
-`;
+  li {
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: background-color 0.3s;
+  }
 
-const DropdownItem = styled.li`
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #0f3610;
+  li:hover {
+    background-color: darkgreen;
     color: #fff;
+  }
+
+  @media (max-width: 480px) {
+    /* Adjust the breakpoint value as needed */
+    ul {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #e5f7eb;
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
   }
 `;
 
-const ViewFavoritesButton = styled.button`
-  background-color: #0f3610;
-  color: #e5f7eb;
-  padding: 0.5rem 1rem;
-  border: none;
-  cursor: pointer;
-  border-radius: 1rem;
-`;
-
-const locations = [
-  { id: 1, name: "Hamburg" },
-  { id: 2, name: "Munich" },
-  { id: 3, name: "Cologne" },
-];
-
 export default function HomePage({ plants, toggleFavorite }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedLocation, setSelectedLocation] = useState(locations[0]);
+  const [selectedLocation, setSelectedLocation] = useState({
+    id: 1,
+    name: "Hamburg",
+  });
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -82,31 +85,46 @@ export default function HomePage({ plants, toggleFavorite }) {
   };
 
   return (
-    <div>
-      <Header>
-        <LocationContainer>
-          <LocationSymbol>&#x1F4CD;</LocationSymbol>
-          <LocationText>{selectedLocation.name}</LocationText>
-          <HamburgerMenu onClick={toggleDropdown}>&#x2630;</HamburgerMenu>
-          {isDropdownOpen && (
-            <DropdownMenu isOpen={isDropdownOpen}>
-              {locations.map((location) => (
-                <DropdownItem
-                  key={location.id}
-                  onClick={() => handleLocationChange(location)}
+    <>
+      <Header />
+      <Container>
+        <PageHeader>
+          <div>
+            <span>📍</span>
+            <span>{selectedLocation.name}</span>
+            <span onClick={toggleDropdown}>☰</span>
+            {isDropdownOpen && (
+              <ul>
+                <li
+                  onClick={() =>
+                    handleLocationChange({ id: 1, name: "Hamburg" })
+                  }
                 >
-                  {location.name}
-                </DropdownItem>
-              ))}
-            </DropdownMenu>
-          )}
-        </LocationContainer>
-      </Header>
-      <h2>Plants in my region</h2>
-      <Link href="/favorites">
-        <ViewFavoritesButton>View Favorites</ViewFavoritesButton>
-      </Link>
-      <PlantList plants={plants} toggleFavorite={toggleFavorite} />
-    </div>
+                  Hamburg
+                </li>
+                <li
+                  onClick={() =>
+                    handleLocationChange({ id: 2, name: "Munich" })
+                  }
+                >
+                  Munich
+                </li>
+                <li
+                  onClick={() =>
+                    handleLocationChange({ id: 3, name: "Cologne" })
+                  }
+                >
+                  Cologne
+                </li>
+              </ul>
+            )}
+          </div>
+        </PageHeader>
+        <h2>Plants in my region</h2>
+        <Link href="/favorites"></Link>
+        <PlantList plants={plants} toggleFavorite={toggleFavorite} />
+      </Container>
+      <Footer />
+    </>
   );
 }
