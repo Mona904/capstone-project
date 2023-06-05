@@ -42,7 +42,7 @@ export default function Favorites({ plants, toggleFavorite }) {
         <p>No plants added to favorites</p>
       )}
 
-      <BackButton onClick={handleBack}>Back to Gallery</BackButton>
+      <BackButton onClick={handleBack}>Back to Homepage</BackButton>
     </Container>
   );
 }

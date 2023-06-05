@@ -9,11 +9,11 @@ const FooterContainer = styled.footer`
   align-items: center;
   padding: 0.4rem;
   background-color: #e5f7eb;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
-  width: 98%;
-  z-index: 1;
+  width: 96%;
+  z-index: 999;
   border-top: 1px solid #ccc;
   gap: 2rem;
 `;
@@ -43,18 +43,22 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <TabBarItem
-        className={selectedTab === "home" ? "selected" : ""}
-        onClick={() => handleTabClick("home")}
-      >
-        <Image src="/home1.png" alt="Home Icon" width={35} height={35} />
-      </TabBarItem>
-      <TabBarItem
-        className={selectedTab === "search" ? "selected" : ""}
-        onClick={() => handleTabClick("search")}
-      >
-        <Image src="/search.png" alt="Search Icon" width={35} height={35} />
-      </TabBarItem>
+      <Link href="/">
+        <TabBarItem
+          className={selectedTab === "home" ? "selected" : ""}
+          onClick={() => handleTabClick("home")}
+        >
+          <Image src="/home1.png" alt="Home Icon" width={35} height={35} />
+        </TabBarItem>
+      </Link>
+      <Link href="/plants">
+        <TabBarItem
+          className={selectedTab === "search" ? "selected" : ""}
+          onClick={() => handleTabClick("search")}
+        >
+          <Image src="/pin1.png" alt="Location Icon" width={35} height={35} />
+        </TabBarItem>
+      </Link>
       <Link href="/favorites">
         <TabBarItem
           className={selectedTab === "favorites" ? "selected" : ""}

@@ -8,14 +8,14 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
   padding: 1rem;
   background-image: url("/header.jpg");
   background-size: cover;
   background-position: center;
   color: #e5f7eb;
   transition: height 0.3s;
-  z-index: 10;
+  z-index: 100;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
 `;
