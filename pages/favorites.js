@@ -15,7 +15,6 @@ const BackButton = styled.button`
   background-color: #173e14;
   color: #fff;
   padding: 0.5rem 1rem;
-  border: none;
   cursor: pointer;
   border-radius: 0.5rem;
 `;
