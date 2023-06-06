@@ -1,4 +1,3 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
     styledComponents: true,
@@ -13,11 +12,6 @@ const nextConfig = {
 
     return config;
   },
-};
-
-module.exports = nextConfig;
-
-module.exports = {
   images: {
     remotePatterns: [
       {
@@ -28,7 +22,6 @@ module.exports = {
         protocol: "https",
         hostname: "picturethisai.com",
       },
-
       {
         protocol: "https",
         hostname: "cdn11.bigcommerce.com",
@@ -39,4 +32,14 @@ module.exports = {
       },
     ],
   },
+  exportPathMap: async function () {
+    return {
+      "/": { page: "/" }, // Home page
+      "/hamburg": { page: "/[location]", query: { location: "hamburg" } },
+      "/munich": { page: "/[location]", query: { location: "munich" } },
+      "/cologne": { page: "/[location]", query: { location: "cologne" } },
+    };
+  },
 };
+
+module.exports = nextConfig;

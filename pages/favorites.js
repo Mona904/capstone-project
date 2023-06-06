@@ -15,7 +15,6 @@ const BackButton = styled.button`
   background-color: #173e14;
   color: #fff;
   padding: 0.5rem 1rem;
-  border: none;
   cursor: pointer;
   border-radius: 0.5rem;
 `;
@@ -42,7 +41,7 @@ export default function Favorites({ plants, toggleFavorite }) {
         <p>No plants added to favorites</p>
       )}
 
-      <BackButton onClick={handleBack}>Back to Gallery</BackButton>
+      <BackButton onClick={handleBack}>Back to Homepage</BackButton>
     </Container>
   );
 }

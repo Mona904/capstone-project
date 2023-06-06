@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import PlantCard from "./PlantCard";
 import styled from "styled-components";
 
@@ -17,21 +18,17 @@ const List = styled.ul`
     height: 10rem;
   }
 `;
-function PlantList({ plants, toggleFavorite }) {
+
+const PlantList = ({ plants, toggleFavorite }) => {
   return (
     <List>
       {plants.map((plant) => (
         <li key={plant.id}>
-          <PlantCard
-            name={plant.name}
-            image={plant.image}
-            id={plant.id}
-            toggleFavorite={toggleFavorite}
-            isFavorite={plant.isFavorite}
-          />
+          <PlantCard plant={plant} toggleFavorite={toggleFavorite} />
         </li>
       ))}
     </List>
   );
-}
+};
+
 export default PlantList;
